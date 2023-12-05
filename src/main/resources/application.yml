@@ -1,0 +1,4 @@
+tus:
+  upload:
+    dir: ./downloads
+    expiration: 86400000

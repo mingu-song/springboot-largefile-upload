@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uppy</title>
+    <link href="https://releases.transloadit.com/uppy/v3.3.1/uppy.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="drag-drop-area"></div>
+<script type="module">
+    import {Uppy, Dashboard, Tus} from "https://releases.transloadit.com/uppy/v3.3.1/uppy.min.mjs"
+    var uppy = new Uppy()
+        .use(Dashboard, {
+            inline: true,
+            target: '#drag-drop-area',
+            showProgressDetails: true,
+        })
+        .use(Tus, {
+            endpoint: 'http://localhost:8080/upload',
+            chunkSize: 5000000, // 5MB
+        })
+
+    uppy.on('complete', (result) => {
+        console.log('Upload complete! We’ve uploaded these files:', result.successful)
+    })
+</script>
+</body>
+</html>
